@@ -14,8 +14,13 @@ STAN: <input type="text" name="stan" id="mojstan">
 <div></div>
 <script type="text/javascript">
     document.getElementById("mojaformularz").addEventListener("submit",sprawdzstan);
+    function sprawdzstan(event){
+        event.preventDefault();
+        var nazwa = document.getElementById("mojastan").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET",'sprawdz.php?stan=+nazwa= true');
+    }
 
-    
 </script>
 </body>
 </html>
