@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <button type="button" id="przycisk">
+        <div id="wynik">
+
+        </div>
+    </button>
+    <script type="text/javascript">
+        document.getElementById("przycisk").addEventListener("click",laduj);
+        function laduj() {
+            var XHR = new XMLHttpRequest();
+            XHR.open("GET", "plik.txt",true);
+            console.log('READYSTATE',XHR.readyState);
+            XHR.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    console.log('this.responseText');
+                }
+               
+            } 
+            XHR.send();
+        }
+    </script>
+</body>
+</html>

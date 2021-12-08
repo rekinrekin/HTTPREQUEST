@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <button id="przycisk">Ładuj przycisk</button>
+    <div id="przycisk"></div>
+    <script >
+        document.getElementById("przycisk").addEventListener("click",laduj)
+        function laduj(e) {
+            var XHR = new XMLHttpRequest();
+            XHR.open("GET", "user.json",true);
+            XHR.onload=function(){
+                if(this.status == 200){
+                    var user = JSON.parse(this.responseText);
+                    var output = `
+                    <ul>
+                        <li>ID:${user.id}</li>
+                    </ul>
+                    `;
+
+                    document.getElementById("wynik").innerHTML = output;
+                }
+            }
+            XHR.send();
+        }
+    </script>
+</body>
+</html>

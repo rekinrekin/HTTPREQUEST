@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <button id="przycisk" type="button">Ładuj user.json</button>
+    <h1>USer</h1>
+    <div id="user"></div>
+    <script type="text/javascript">
+        document.getElementById("przycisk").addEventListener("click",ladujuzytkownikuw);
+        function ladujuzytkownikuw(){
+            var xhr =new XMLHttpRequest();
+            xhr.open("GET", "user.json",true);
+
+            xhr.onload = function(){
+                if(this.status==200){
+                    var user = JSON.parse(this.responseText);
+                    var output='';
+                    for(let i in user){
+                        output+=`
+                        <ul>
+                            <li>ID:${user[i].id}</li>
+                            <li>Name:${user[i].name}</li>
+                            <li>${user[i].email}</li>
+                        </ul>
+                        `
+                    }
+                    document.getElementById('user').innerHTML=output;
+                }
+
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
